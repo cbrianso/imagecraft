@@ -126,6 +126,9 @@ class ResourceHelper
                 break;
             case PhpGdContext::FORMAT_JPEG:
                 $quality = isset($options['jpeg_quality']) ? $options['jpeg_quality'] : 100;
+                if (isset($options['jpeg_interlace'])) {
+                    imageinterlace($resource, $options['jpeg_interlace']);
+                }
                 $success = @imagejpeg($resource, null, $quality);
                 break;
             case PhpGdContext::FORMAT_GIF:
